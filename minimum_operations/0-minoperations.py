@@ -1,31 +1,20 @@
 #!/usr/bin/python3
+"""Minimum Operations Actvitiy"""
+
 
 def minOperations(n):
-    if n <= 1:
+    if n < 2:
         return 0
-    
-    operations = 0
-    i = 2  # Start with the first prime number
 
-    while i * i <= n:
-        while n % i == 0:
-            operations += i
-            n //= i
-        i += 1
+    current_num_of_h = 1
+    copied = 0
+    num_of_operations = 0
 
-    if n > 1:
-        operations += n
+    while current_num_of_h < n:
+        if n % current_num_of_h == 0:
+            copied = current_num_of_h
+            num_of_operations += 1
 
-    return operations
-
-if __name__ == "__main__":
-    # Example usage
-    n = 9
-    print("Number of operations for n = {}: {}".format(n, minOperations(n)))
-
-    n = 4
-    print("Number of operations for n = {}: {}".format(n, minOperations(n)))
-
-    n = 12
-    print("Number of operations for n = {}: {}".format(n, minOperations(n)))
-
+        current_num_of_h += copied
+        num_of_operations += 1
+    return num_of_operations
